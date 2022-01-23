@@ -1,0 +1,26 @@
+/*
+    <!--------------------------------------
+FOOTER
+--------------------------------------->  
+*/
+
+footer {
+  position: relative;
+  margin-bottom: 0;
+  color: aliceblue;
+  width: 100%;
+  background-color: #003567;
+  height: 100px;
+
+  margin-right: auto;
+  margin-left: auto;
+}
+.footer-container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-around;
+}
+.footer-container .left-side {
+  width: max-content;
+}

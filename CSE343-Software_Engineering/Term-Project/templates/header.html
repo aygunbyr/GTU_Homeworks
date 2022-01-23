@@ -1,0 +1,62 @@
+<!--------------------------------------
+    HEADER
+    --------------------------------------->
+<header>
+  <div class="navbar">
+    <div class="brand">
+      <a href="http://127.0.0.1:8000/">
+        <img
+          src="/static/Images/FİTUNEXPECTED.png"
+          alt="Error!"
+          width="150px"
+          height="75px"
+        />
+      </a>
+    </div>
+    <div class="auth-buttons">
+      <div class="navigation-items">
+        {% if not request.user.is_authenticated %}
+        <a style="font-weight: bold" href="{% url 'accounts:login' %}"
+          >Log In</a
+        >
+        <a style="font-weight: bold" href="{% url 'accounts:register' %}"
+          >Sign Up</a
+        >
+        <a style="font-weight: bold" href="{% url 'accounts:password_reset' %}"
+          >Forgot Password</a
+        >
+        {% else %}
+
+        <a
+          href="{% url 'accounts:profile' %}"
+          style="font-size: 24px"
+          class="far"
+          >&#xf2bd;</a
+        >
+        <a style="font-weight: bold" href="{% url 'messaging:index' %}">
+          <i style="font-size: 24px" class="fa">&#xf0e0;</i>
+        </a>
+
+        <a style="font-weight: bold" href="{% url 'accounts:logout' %}"
+          >Log Out</a
+        >
+        {% endif %}
+      </div>
+    </div>
+    <div class="menu-btn"></div>
+    <div class="navigation" style="">
+      <div class="navigation-items">
+        <a style="font-weight: bold" href="{% url 'post:index' %}">Blog</a>
+        <a style="font-weight: bold" href="{% url 'trainer:index' %}"
+          >Trainers</a
+        >
+
+        <a style="font-weight: bold" href="{% url 'feedback:index' %}"
+          >Feedback</a
+        >
+        <a style="font-weight: bold" href="#">About Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- End Header -->

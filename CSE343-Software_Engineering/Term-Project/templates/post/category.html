@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Anasayfa - {{ block.super }}{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <h2> Kategoriler </h2>
+<div class="container">
+        <div class ="row">
+        {% for category in category_list %}
+
+            <div class="col col-md-2">
+
+                {% if category.image %}
+                    <img src="{{ category.image.url }}" class="img-fluid" />
+                {% endif %}
+                <a href="{% url 'post:index' %}?kategori={{category.slug}} ">
+                    {{category.name}}
+                </a>
+                </div>
+        {% endfor %}
+</div>
+            </div>
+
+    </div>
+
+<h1>Tek bir elemana erişme</h1>
+{% if category_list %}
+{{category_list.1.name}}
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,289 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitblog</title>
+    <link rel="stylesheet" href="{% static 'css/Button.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Link.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/Blogindex.css' %}"/>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    {% include 'header.html' %}
+
+    <!--------------------------------------
+    MAIN
+    --------------------------------------->
+    <div class="post-body">
+          <!--------------------------------------
+    Best Post
+    --------------------------------------->
+
+    <div class="best-section">
+      <div class="container">
+        <div class="left-side">
+          <div class="left-inf">
+            {% if posts.0 %}
+            <h1>
+              {{ posts.0.title }}
+            </h1>
+            <p>
+              {{ posts.0.content|safe|linebreaks|truncatechars:300 }}
+            </p>
+            <br/>
+            <a href="{{posts.0.get_absolute_url}}"
+            <button class="button-75" role="button">
+              <span class="text">Read More</span>
+            </button>
+            </a>
+            {% endif %}
+
+          </div>
+        </div>
+        <div class="right-side">
+          {% if posts.0 %}
+            {% if posts.0.image %}
+            <img src="{{ posts.0.image.url }}" class="img-fluid" />
+            {% endif %}
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+    <!--------------------------------------
+    Best Post End
+    --------------------------------------->
+
+    <!--------------------------------------
+    Nearby Post
+    --------------------------------------->
+    <div class="nearby-section">
+      <h3 style="margin-left: 20px">Latest Posts</h3>
+      <hr style="max-width: 1100px; margin-left: 20px" />
+      <div class="container">
+        <div class="left-side">
+          {% if posts.1.image %}
+            <img src="{{ posts.1.image.url }}" class="img-fluid img-thumbnail" />
+          {% endif %}
+          <div>
+            {% if posts.1 %}
+
+            <h3>
+              <a class="link-flash" href="{{posts.1.get_absolute_url}}"
+                >{{posts.1.title}}</a
+              >
+            </h3>
+            <p>
+              {{ posts.1.content|safe|linebreaks|truncatechars:230 }}
+            </p>
+            <p class="post-detail">{{ posts.1.user.get_full_name}}<br />{{ posts.1.publishing_date|timesince }}</p>
+
+            {% endif %}
+
+          </div>
+        </div>
+
+        <div class="right-side">
+
+
+          <div class="block">
+            {% if posts.2 %}
+              {% if posts.2.image %}
+                <img src="{{ posts.2.image.url }}" class="img-fluid img-thumbnail" />
+              {% endif %}
+            <div class="block-right-side">
+              <h4>
+                <a class="link-flash" href="{{posts.2.get_absolute_url}}">{{ posts.2.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.2.user.get_full_name}}<br />{{ posts.2.publishing_date|timesince }}</p>
+
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="block">
+            {% if posts.3 %}
+              {% if posts.3.image %}
+                <img src="{{ posts.3.image.url }}" class="img-fluid img-thumbnail" />
+              {% endif %}
+            <div class="block-right-side">
+              <h4>
+                <a class="link-flash" href="{{posts.3.get_absolute_url}}">{{ posts.3.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.3.user.get_full_name}}<br />{{ posts.3.publishing_date|timesince }}</p>
+
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="block">
+            {% if posts.4 %}
+              {% if posts.4.image %}
+                <img src="{{ posts.4.image.url }}" class="img-fluid img-thumbnail" />
+              {% endif %}
+            <div class="block-right-side">
+              <h4>
+                <a class="link-flash" href="{{posts.4.get_absolute_url}}">{{ posts.4.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.4.user.get_full_name}}<br />{{ posts.4.publishing_date|timesince }}</p>
+
+            </div>
+            {% endif %}
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <!--------------------------------------
+    Nearby Post End
+    --------------------------------------->
+
+    <!--------------------------------------
+    Category Post
+    --------------------------------------->
+    <div class="category-posts-section">
+      <div class="container">
+        <div class="left-side">
+          <h3>
+            <i style="font-size: 14px; opacity: 0.6" class="fas">&#xf053;</i>
+            {{ mycategory.name }}
+            <i style="font-size: 14px; opacity: 0.6" class="fas">&#xf054;</i>
+            <br/><br/>
+          </h3>
+          <hr style="margin-top: -20px; width: 700px" />
+
+          {% for postc in post_by_category %}
+              <div class="block">
+              <div class="block-left-side">
+                <h4>
+                  <a class="link-flash" href="{{postc.get_absolute_url}}">{{ postc.title }}</a>
+                </h4>
+                <p>{{ postc.content|safe|linebreaks|truncatechars:230 }}</p>
+                <p class="post-detail">{{ posts.4.user.get_full_name}}<br />{{ posts.4.publishing_date|timesince }}</p>
+              </div>
+                {% if postc.image %}
+                  <img src="{{ postc.image.url }}" alt="" />
+                {% endif %}
+            </div>
+          {% endfor %}
+
+
+        </div>
+        <div class="right-side">
+          <h3>Top List</h3>
+          <hr style="margin: 10px 0; width: 200px" />
+
+          <div class="block">
+            <h1>01</h1>
+
+            <div class="block-right-side">
+              <h4>
+                  <a class="link-flash" href="{{posts.0.get_absolute_url}}">{{ posts.0.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.0.user.get_full_name}}<br />{{ posts.0.publishing_date|timesince }}</p>
+            </div>
+          </div>
+
+          <div class="block">
+            <h1>02</h1>
+
+            <div class="block-right-side">
+              <h4>
+                  <a class="link-flash" href="{{posts.1.get_absolute_url}}">{{ posts.1.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.1.user.get_full_name}}<br />{{ posts.1.publishing_date|timesince }}</p>
+            </div>
+          </div>
+
+          <div class="block">
+            <h1>03</h1>
+
+            <div class="block-right-side">
+              <h4>
+                  <a class="link-flash" href="{{posts.2.get_absolute_url}}">{{ posts.2.title }}</a>
+              </h4>
+              <p class="post-detail">{{ posts.2.user.get_full_name}}<br />{{ posts.2.publishing_date|timesince }}</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!--------------------------------------
+    Category Post
+    --------------------------------------->
+
+    </div>
+
+    <!--------------------------------------
+FOOTER
+--------------------------------------->
+    <footer>
+      <div class="footer-container">
+        <div class="left-side">
+          <strong>TeamUnexpected</strong>
+          Copyright &copy; . All rights reserved.
+        </div>
+        <div class="Right-side">Made with TeamUnexpected.</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!--------------------------------------
+    End MAIN
+    --------------------------------------->
+
+    <script type="text/javascript">
+      //Javacript for responsive navigation menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".navigation");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+
+      //Javacript for video slider navigation
+      const btns = document.querySelectorAll(".nav-btn");
+      const slides = document.querySelectorAll(".video-slide");
+      const contents = document.querySelectorAll(".content");
+
+      var sliderNav = function (manual) {
+        btns.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+      };
+
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          sliderNav(i);
+        });
+      });
+    </script>
+  </body>
+</html>

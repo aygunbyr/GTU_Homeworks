@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width-device-width, initial-scale=1"
+    />
+    <title>Messages</title>
+
+    <link rel="stylesheet" href="./messages.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".message-p").click(function () {
+          $(this).toggleClass("isSelected");
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $(".new-mes").click(function () {
+          $(".comming-message").addClass("active");
+          $(".new-message").addClass("active-new");
+          $(".message-p").removeClass("isSelected");
+        });
+      });
+      $(document).ready(function () {
+        $(".comming-mes").click(function () {
+          $(".new-message").removeClass("active-new");
+          $(".comming-message").removeClass("active");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="message-body">
+      <div class="message-box">
+        <div class="left-side">
+          <span style="margin-top: 0px" class="new-mes">New Message</span>
+          <span class="comming-mes">Coming Message</span>
+        </div>
+        <div class="right-side">
+          <div class="new-message"></div>
+          <div class="comming-message">
+            <div class="message-content">
+              <p class="message-p">
+                Mesaj Kimden/Tarih<br />
+                Mesaj Konusu<br />
+
+                Paragraf burada: is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown
+                printer took a galley of type and scrambled it to make a type
+                specimen book. It has survived not only five centuries, but also
+                the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.<br />
+              </p>
+            </div>
+            <div class="message-content">
+              <p class="message-p">
+                Mesaj Kimden/Tarih<br />
+                Mesaj Konusu<br />
+
+                Paragraf burada: is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown
+                printer took a galley of type and scrambled it to make a type
+                specimen book. It has survived not only five centuries, but also
+                the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.<br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

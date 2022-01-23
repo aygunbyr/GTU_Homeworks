@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitblog</title>
+    <link rel="stylesheet" href="{% static 'css/Button.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Link.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Comment.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/post.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  </head>
+  <body>
+  {% include 'header.html' %}
+
+    <!--------------------------------------
+    MAIN
+    --------------------------------------->
+
+    <div class="post-body">
+    <!--------------------------------------
+    HEADING
+    --------------------------------------->
+    <div class="header-container">
+      <div class="container">
+        <div class="left-side">
+          <div class="left-side-container">
+            <h1>
+              {{ post.title }}
+            </h1>
+            <p>
+                {% if request.user.is_authenticated and request.user == post.user %}
+                                <a href="{{ post.get_update_url }}" class="btn btn-dark" role="button">Güncelle</a>
+                                <a href="{{ post.get_delete_url }}" class="btn btn-danger" role="button">Sil</a>
+                                {% endif %}
+              </p>
+            <div class="author-inf">
+              <img
+                class="rounded-circle"
+                src=" {% static 'Images/laura-jones.jpg' %}"
+                width="70"
+              />
+              <small
+                >{{ post.user.get_full_name }}
+                <span>{{ post.publishing_date|timesince }} ago &middot; 5 min. read</span>
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="right-side">
+          {% if post.image %}
+             <img src="{{ post.image.url }}" class="img-fluid" />
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!--------------------------------------
+   END OF HEADING
+    --------------------------------------->
+
+    <!--------------------------------------
+    POST PARAGRAPH
+    --------------------------------------->
+    <div class="post-container">
+      <div class="container">
+        <p>
+          {{ post.content|safe|linebreaks }}
+        </p>
+      </div>
+    </div>
+
+    <div class="category-posts-section">
+      <div class="container">
+        <h3>Read Next</h3>
+        <hr style="width: 700px" />
+
+        {% for post in post_in_category %}
+            <div class="block">
+            <div class="block-left-side">
+              <h4>
+                <a class="link-flash" href="{{ post.get_absolute_url }}"
+                  >{{ post.title }}</a
+                >
+              </h4>
+
+              <p>
+                {{ post.content|safe|linebreaks|truncatechars:300 }}
+              </p>
+              <p class="post-detail">{{ post.user.get_full_name }}<br />{{ post.publishing_date|timesince }} ago - 5 min. read</p>
+            </div>
+            {% if post.image %}
+            <img src="{{ post.image.url }}" class="img-fluid" />
+            {% endif %}
+          </div>
+        {% endfor %}
+
+
+
+
+      </div>
+    </div>
+
+    <!---Comment----->
+
+    <div class="comment-container">
+      <div class="row">
+        <div class="col-12">
+          <div class="comments">
+            <div class="comments-details">
+              <span class="total-comments comments-sort">{{ post.comments.count }} Comments</span>
+              <span class="dropdown">
+                <button
+                  type="button"
+                  class="btn dropdown-toggle"
+                  data-toggle="dropdown"
+                >
+                  Sort By <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu">
+                  <a href="#" class="dropdown-item">Top Comments</a>
+                  <a href="#" class="dropdown-item">Newest First</a>
+                </div>
+              </span>
+            </div>
+
+
+            {% if request.user.is_authenticated %}
+                        {% include 'post/comment.html' %}
+            {% endif %}
+
+            <br/>
+
+        {% for comment in post.comments.all %}
+            {% if comment.is_approved %}
+              <div class="comment-box">
+
+                <span class="commenter-pic">
+                  <img
+                      src="{% static 'Images/laura-jones.jpg' %}"
+                      class="img-fluid"
+                    />
+                </span>
+                <span class="commenter-name">
+                  <a href="#">{{ comment.name }}</a>
+                  <span class="comment-time"{{ comment.created_date|timesince }} ago</span>
+                </span>
+                <p class="comment-txt more">
+                  {{ comment.content|linebreaks }}
+                </p>
+              </div>
+            {% endif %}
+        {% endfor %}
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!--------------------------------------
+FOOTER
+        --------------------------------------->
+
+    <footer>
+      <div class="footer-container">
+        <div class="left-side">
+          <strong>TeamUnexpected</strong>
+          Copyright &copy; . All rights reserved.
+        </div>
+        <div class="Right-side">Made with TeamUnexpected.</div>
+      </div>
+    </footer>
+
+    <!-- End Footer -->
+
+    <!--------------------------------------
+    End MAIN
+    --------------------------------------->
+    <script>
+      // Reply box popup JS
+      $(document).ready(function () {
+        $(".reply-popup").click(function () {
+          $(".reply-box").toggle();
+        });
+      });
+    </script>
+
+    <script type="text/javascript">
+      //Javacript for responsive navigation menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".navigation");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+
+      //Javacript for video slider navigation
+      const btns = document.querySelectorAll(".nav-btn");
+      const slides = document.querySelectorAll(".video-slide");
+      const contents = document.querySelectorAll(".content");
+
+      var sliderNav = function (manual) {
+        btns.forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+        });
+
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+
+        btns[manual].classList.add("active");
+        slides[manual].classList.add("active");
+        contents[manual].classList.add("active");
+      };
+
+      btns.forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+          sliderNav(i);
+        });
+      });
+    </script>
+  </body>
+</html>

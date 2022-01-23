@@ -1,0 +1,20 @@
+/*
+    <!--------------------------------------
+FOOTER
+--------------------------------------->  
+*/
+
+footer {
+  width: 100%;
+  background-color: rgb(169, 192, 236);
+  height: 100px;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.footer-container {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: space-around;
+}

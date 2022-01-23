@@ -1,0 +1,126 @@
+{% load static %}
+<html>
+  <head>
+    <title>Trainers Page</title>
+    <link rel="stylesheet" href="{% static 'css/Trainers.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Footer.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/Button.css' %}" />
+
+    <style>
+      .fa-star {
+        opacity: 0.3;
+        color: cadetblue;
+      }
+      .checked {
+        opacity: 1;
+        color: blue;
+      }
+    </style>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    {% include 'header.html' %}
+
+    <div class="profile-list">
+      {% if auth_trainer %} {% endif %}
+      <div class="trainer-blocks">
+        {% for trainer in trainers %}
+        <div class="profile-block">
+          <div class="upper-side">
+            <img src="{{ trainer.image.url }}" alt="" />
+            <div class="profile-inf">
+              <p>{{ trainer.Name}} {{ trainer.Surname }}</p>
+              <div class="ranking">
+                <h6>Rankings</h6>
+                <p style="margin-top: 5px; font-size: 20px; font-weight: bold">
+                  8,6
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                </p>
+              </div>
+              <p>{{ trainer.Address }}</p>
+            </div>
+          </div>
+          <div class="down-side">
+            <a href="{{trainer.get_absolute_url}}">
+              <button
+                style="justify-items: end; margin-top: 10px"
+                class="button-75"
+                role="button"
+              >
+                <p class="text">Profile</p>
+              </button></a
+            >
+          </div>
+        </div>
+        <br />
+        {% endfor %}
+      </div>
+    </div>
+    <script type="text/javascript">
+      //Javacript for responsive navigation menu
+      const menuBtn = document.querySelector(".menu-btn");
+      const navigation = document.querySelector(".navigation");
+
+      menuBtn.addEventListener("click", () => {
+        menuBtn.classList.toggle("active");
+        navigation.classList.toggle("active");
+      });
+    </script>
+    <script>
+      var x = document.getElementById("About");
+      var y = document.getElementById("Calender");
+      var z = document.getElementById("btn");
+
+      function about() {
+        x.style.left = "-480px";
+        y.style.left = "500px";
+        z.style.left = "170px";
+      }
+      function calender() {
+        x.style.left = "0px";
+        y.style.left = "0px";
+        z.style.left = "0px";
+      }
+    </script>
+  </body>
+  <!--------------------------------------
+FOOTER
+--------------------------------------->
+  <footer>
+    <div class="footer-container">
+      <div class="left-side">
+        <strong>TeamUnexpected</strong>
+        Copyright &copy; . All rights reserved.
+      </div>
+      <div class="Right-side">Made with TeamUnexpected.</div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+</html>

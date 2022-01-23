@@ -1,0 +1,64 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitblog</title>
+
+
+    <link rel="stylesheet" href="{% static 'css/Button.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Link.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/Header.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/Footer.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/ViewProfile.css' %}" />
+  
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  </head>
+  <body>
+
+  {% include 'header.html' %}
+  <br/>
+    <div class="container">
+        <div class="profile">
+            <div class="profile-block">
+              <div class="image">
+                {% if user.profile.avatar_image %}
+                   <img src="{{ user.profile.avatar_image.url }}" height="300"/>
+                {% endif %}
+              </div>
+              <div class="inf">
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <p>E-mail address: {{ user.email }}</p>
+                <p>Bio: {{ user.profile.bio }}</p>
+                <p>City: {{ user.profile.location }}</p>
+                <p>Birth Date: {{ user.profile.birth_date }}</p>
+                <a href="{% url 'accounts:edit_profile' %}">Edit my profile</a>
+              </div>
+            </div>
+        </div>
+    </div>
+ <!--------------------------------------
+FOOTER
+--------------------------------------->
+    <footer>
+      <div class="footer-container">
+        <div class="left-side">
+          <strong>TeamUnexpected</strong>
+          Copyright &copy; . All rights reserved.
+        </div>
+        <div class="Right-side">Made with TeamUnexpected.</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+  <script src={% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src={% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

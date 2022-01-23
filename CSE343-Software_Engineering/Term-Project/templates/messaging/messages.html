@@ -1,0 +1,106 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitblog</title>
+    <link rel="stylesheet" href="{% static 'css/Button.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Link.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/Header.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/Footer.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/Index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Messages.css' %}" />
+
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".message-p").click(function () {
+          $(this).toggleClass("isSelected");
+        });
+      });
+    </script>
+    <script>
+      $(document).ready(function () {
+        $(".new-mes").click(function () {
+          $(".comming-message").addClass("active");
+          $(".new-message").addClass("active-new");
+          $(".message-p").removeClass("isSelected");
+        });
+      });
+      $(document).ready(function () {
+        $(".comming-mes").click(function () {
+          $(".new-message").removeClass("active-new");
+          $(".comming-message").removeClass("active");
+        });
+      });
+    </script>
+  </head>
+  <body>
+
+  {% include 'header.html' %}
+
+
+  <div class="container">
+    <div class="message-body">
+      <div class="message-box">
+        <div class="left-side">
+          <span style="margin-top: 0px" class="new-mes">New Message</span>
+          <span class="comming-mes">Coming Message</span>
+        </div>
+        <div class="right-side">
+          <div class="new-message">
+            <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    {{ form|crispy }}
+                    {{ form.media }}
+                    <br/>
+                    <input class="btn btn-primary" type="submit" value="Gönder"/>
+            </form>
+          </div>
+          <div class="comming-message">
+            {% if received_messages %}
+              {% for message in received_messages %}
+                <div class="message-content">
+                  <p class="message-p">
+                    Sender: {{ message.receiver.get_full_name }} <br/>
+                    Since {{ message.sent_date|timesince }} ago<br/>
+                    Topic: {{ message.topic }}<br />
+                    Message:<br/>
+                    {{ message.message_text }}<br />
+                  </p>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+ <!--------------------------------------
+FOOTER
+--------------------------------------->
+    <footer>
+      <div class="footer-container">
+        <div class="left-side">
+          <strong>TeamUnexpected</strong>
+          Copyright &copy; . All rights reserved.
+        </div>
+        <div class="Right-side">Made with TeamUnexpected.</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+  <script src={% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src={% static 'js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

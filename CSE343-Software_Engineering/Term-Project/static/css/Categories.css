@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #f2f3f4;
+}
+
+.posts-section {
+  margin-top: 30px;
+  max-width: 1100px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
+.posts-section .container {
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+}
+.posts-section .container .left-side {
+  width: 600px;
+}
+.posts-section .container .left-side .slider-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.posts-section .container .main-post div {
+  height: 125px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+.posts-section .container .left-side img {
+  margin-top: 20px;
+  width: 600px;
+  height: 300px;
+}
+
+.posts-section .container .right-side {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.posts-section .container .left-side .block {
+  display: flex;
+  margin-top: 25px;
+}
+.posts-section .container .left-side .block .block-left-side {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+}
+.posts-section .container .left-side .block .block-left-side p {
+  padding-top: 15px;
+}
+.posts-section .container .left-side .block h4 {
+}
+.posts-section .container .left-side .block img {
+  width: 175px;
+  height: 125px;
+  align-self: center;
+}
+
+.posts-section .container .right-side .block {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.posts-section .container .right-side .block h1 {
+  align-self: center;
+  font-size: 3em;
+}
+.posts-section .container .right-side .block .block-right-side {
+  display: flex;
+  margin-left: 15px;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100px;
+}

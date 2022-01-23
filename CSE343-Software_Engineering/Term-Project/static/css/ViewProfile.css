@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  min-height: 100%;
+  background: #003567;
+}
+.container {
+  min-height: 100%;
+  margin: 100px auto;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile {
+  background-color: white;
+  width: 1200px;
+  height: max-content;
+  padding: 50px 50px;
+  border-radius: 50px;
+}
+.profile-block {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+}
+
+.profile-block .inf {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.profile-block .inf a {
+  background-color: turquoise;
+  width: max-content;
+  padding: 15px;
+  border-radius: 25px;
+  transition: 0.5s;
+}
+.profile-block .inf a:hover {
+  background-color: turquoise;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.profile-block form {
+  display: flex;
+  flex-direction: column;
+}
+form p {
+  padding-top: 15px;
+}

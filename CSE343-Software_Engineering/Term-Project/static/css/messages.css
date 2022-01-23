@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  min-height: 100%;
+  background: #003567;
+}
+.container {
+  min-height: 100%;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.message-body {
+  display: flex;
+  margin: auto auto;
+  margin-top: 50px;
+}
+.message-box {
+  width: 1000px;
+  height: 450px;
+  display: grid;
+  grid-template-columns: 150px 450px;
+  overflow: hidden;
+  border-bottom-right-radius: 100px;
+}
+
+.message-box .left-side {
+}
+
+.message-box .left-side span {
+  background: #0b5192;
+  color: aliceblue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+  margin-left: auto;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.message-box .left-side span:hover {
+  width: 170px;
+  margin-right: 50px;
+  transition: 0.2s;
+}
+.message-box .right-side {
+  background: #0b5192;
+  border-bottom-right-radius: 20px;
+  height: 700px;
+  width: 800px;
+  overflow: hidden;
+}
+.message-box .right-side .comming-message {
+  height: 400px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  overflow: scroll;
+  transition: 0.5s;
+}
+.message-box .right-side .new-message {
+  margin-top: 35px;
+  overflow: hidden;
+  height: 0px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.5s;
+}
+.message-box .right-side .message-content {
+  margin: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+}
+.message-box .right-side p {
+  margin: 10px 20px;
+  height: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.active {
+  height: 0px !important;
+  transition: 0.5s;
+}
+.active-new {
+  height: 400px !important;
+  transition: 0.5s;
+}
+
+.isSelected {
+  padding: 20px;
+  height: max-content !important;
+}

@@ -1,0 +1,30 @@
+.wrapper-2 {
+  position: absolute;
+  top: 30px;
+  right: 400px;
+  height: 0px;
+  overflow: hidden;
+  width: 0px;
+  background-color: #dce6f0;
+  border-radius: 50px;
+  color: black;
+  transition: 0.5s;
+}
+
+.wrapper-2-active {
+  height: max-content !important;
+  width: 500px;
+  padding: 50px;
+  transition: 0.5s;
+}
+
+.close {
+  height: 0px !important;
+}
+input[type="checkbox"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  appearance: auto;
+}

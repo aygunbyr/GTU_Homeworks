@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    {% for feedback in feedbacks %} {{ feedback.name }}<br />
+    {{ feedback.surname }}<br />
+    {{ feedback.mail }}<br />
+    {{ feedback.Comment }}<br />
+    {% endfor %}
+  </body>
+</html>
